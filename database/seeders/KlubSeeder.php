@@ -31,6 +31,26 @@ class KlubSeeder extends Seeder
                 'nama_klub' => 'Persebaya',
                 'kota' => 'Surabaya'
             ],
+            [
+                'nama_klub' => 'Bali United FC',
+                'kota' => 'Gianyar'
+            ],
+            [
+                'nama_klub' => 'Persik',
+                'kota' => 'Kediri'
+            ],
+            [
+                'nama_klub' => 'RANS Nusantara FC',
+                'kota' => 'Jakarta'
+            ],
+            [
+                'nama_klub' => 'Madura United FC',
+                'kota' => 'Madura'
+            ],
+            [
+                'nama_klub' => 'PSM Makassar',
+                'kota' => 'Makassar'
+            ],
         ])->each(function($klub) {
             Klub::create($klub);
         });

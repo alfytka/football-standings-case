@@ -9,11 +9,10 @@ use Illuminate\Http\Request;
 
 class KlubController extends Controller
 {
-    
     public function index()
     {
         return view('pages.klub.index', [
-            'klub' => Klub::latest()->get()
+            'klub' => Klub::orderBy('nama_klub', 'asc')->get()
         ]);
     }
 
@@ -25,7 +24,7 @@ class KlubController extends Controller
     public function store(KlubRequest $request)
     {
         Klub::create($request->all());
-        return redirect(route('klub.index'))->with('info', 'Berhasil menambahkan data klub.');
+        return redirect(route('klub.index'))->with('info', 'Berhasil menambahkan data klub baru.');
     }
 
     public function show($id)
@@ -44,7 +43,7 @@ class KlubController extends Controller
     {
         $klub = [
             'nama_klub' => $request->nama_klub,
-            'kota_klub' => $request->kota_klub
+            'kota' => $request->kota
         ];
         Klub::where('id', $id)->update($klub);
         return redirect(route('klub.index'))->with('info', 'Berhasil mengubah data klub.');

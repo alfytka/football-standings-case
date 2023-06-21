@@ -26,22 +26,10 @@ class SkorController extends Controller
     public function store(SkorRequest $request)
     {
         $skor = Skor_pertandingan::all();
-        // $totalMainKlub1 = Skor_pertandingan::where($request->id_klub1)->count();
-        // $totalMainKlub2 = Skor_pertandingan::where($request->id_klub1)->count();
-        $main = 1;
-        $menang = 3;
-        $seri = 1;
-        $kalah = 0;
-        // $team1 = Klub::where('id', $request->id_klub1)->count();
-        // $team1 = Klub::where('id', $request->id_klub1)->count();
-        // $team2 = Klub::where('id', $request->id_klub2)->count();
-
-        $klub = Klub::all();
 
         if ($request->id_klub1 == $request->id_klub2) {
             return redirect(route('skor-pertandingan.create'))->with('info', 'Perhatian, Klub yang saling berlawanan tidak boleh sama.');
-        // } else if ($skor->id_klub1 && $skor->id_klub2 == $request->id_klub1 && $request->id_klub2) {
-        } else if (!$skor->where('id_klub1', $request->id_klub1) && !$skor->where('id_klub2', $request->id_klub2)) {
+        } else if ($skor->where('id_klub1', $request->id_klub1)->where('id_klub2', $request->id_klub2)->count() > 0) {
             return redirect(route('skor-pertandingan.create'))->with('info', 'Pertandingan dengan dua tim yang Anda pilih sudah ada, coba cek lagi.');
         } else {
             Skor_pertandingan::create($request->all());
@@ -123,15 +111,7 @@ class SkorController extends Controller
 
     public function update(SkorRequest $request, $id)
     {
-        $skor = [
-            'id_klub1' => $request->id_klub1,
-            'id_klub2' => $request->id_klub2,
-            'skor_1' => $request->skor_1,
-            'skor_2' => $request->skor_2
-        ];
-
-        Skor_pertandingan::where('id', $id)->update($skor);
-        return redirect(route('skor-pertandingan.index'))->with('info', 'Berhasil mengubah skor pertandingan.');
+        //
     }
 
     public function destroy($id)

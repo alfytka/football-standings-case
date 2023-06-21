@@ -10,12 +10,12 @@ class Klub extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function klub1()
+    public function pertandingan1()
     {
         return $this->hasMany(Skor_pertandingan::class, 'id_klub1', 'id');
     }
 
-    public function klub2()
+    public function pertandingan2()
     {
         return $this->hasMany(Skor_pertandingan::class, 'id_klub2', 'id');
     }

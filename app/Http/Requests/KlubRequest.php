@@ -28,7 +28,7 @@ class KlubRequest extends FormRequest
 
         return [
             'nama_klub' => ['required', 'string', 'max:150', 'unique:klubs'],
-            'kota_klub' => ['required', 'string', 'max:100']
+            'kota' => ['required', 'string', 'max:100']
         ];
     }
 }

@@ -24,7 +24,6 @@ class CreateKlubsTable extends Migration
             $table->string('goal_menang')->default(0);
             $table->string('goal_kalah')->default(0);
             $table->string('point')->default(0);
-            $table->text('logo')->nullable();
             $table->timestamps();
         });
     }
