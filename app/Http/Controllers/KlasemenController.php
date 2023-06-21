@@ -10,7 +10,7 @@ class KlasemenController extends Controller
     public function index()
     {
         return view('pages.klasemen.index', [
-            'klasemen' => Klub::latest()->get()
+            'klasemen' => Klub::orderBy('point', 'desc')->get()
         ]);
     }
 

@@ -25,7 +25,7 @@ class UpdateKlubRequest extends FormRequest
     {
         return [
             'nama_klub' => ['required', 'string', 'max:150'],
-            'kota_klub' => ['required', 'string', 'max:100']
+            'kota' => ['required', 'string', 'max:100']
         ];
     }
 }

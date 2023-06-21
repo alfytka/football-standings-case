@@ -21,7 +21,7 @@
   <div class="pb-4 flex items-center md:justify-between">
     <div>
       <a href="/klub/create" type="button" class="mt-1 text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:outline-none font-medium rounded-md text-sm px-5 py-2 text-center hidden md:inline-flex items-center focus:ring-blue-800">
-        Add <span class="md:hidden lg:flex lg:pl-1">siswa</span>
+        Tambah <span class="md:hidden lg:flex lg:pl-1">Klub</span>
         <svg fill="none" class="w-5 h-5 p-0.5 text-blue-600 bg-blue-200 rounded-full ml-2 -mr-1" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
         </svg>
@@ -33,7 +33,7 @@
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
         </div>
-        <input type="text" id="search-table" name="search" class="block p-2 pl-10 text-sm border rounded-lg w-80 bg-gray-800/40 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Cari siswa..." autocomplete="off">
+        <input type="text" id="search-table" name="search" class="block p-2 pl-10 text-sm border rounded-lg w-80 bg-gray-800/40 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Cari klub..." autocomplete="off">
       </div>
     </form>
   </div>
@@ -45,7 +45,7 @@
             Nama Klub
           </th>
           <th scope="col" class="px-6 py-3">
-            Kota Asal Klub
+            Kota
           </th>
           <th scope="col" class="px-6 py-3"></th>
         </tr>
@@ -53,19 +53,15 @@
       <tbody id="result">
         @foreach ($klub as $item)
         <tr class="border-b bg-gray-800/40 border-gray-700 hover:bg-gray-900">
-          <th scope="row" class="flex items-center px-6 py-4 whitespace-nowrap text-white">
-            <img class="w-8 h-8 rounded-full" src="/img/profile.jpg" alt="Jese image">
-            <div class="pl-3">
-              <div class="text-sm font-medium">{{ $item->nama_klub }}</div>
-              <div class="font-normal leading-none text-gray-500">{{ $item->kota_klub }}</div>
-            </div>  
-          </th>
+          <td class="px-6 py-4 font-medium text-gray-300">
+            {{ $item->nama_klub }}
+          </td>
           <td class="px-6 py-4">
             {{ $item->kota }}
           </td>
           <td class="px-6 py-4">
             <a href="/klub/{{ $item->id }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">Edit</a>
-            <a data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="font-medium text-red-500 hover:underline cursor-pointer">Delete</a>
+            <a data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="font-medium text-red-500 hover:underline cursor-pointer">Hapus</a>
           </td>
           <div id="delete-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-[42] hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full transform transition-all">
             <div class="relative w-full h-full max-w-md md:h-auto transform transition-all">
@@ -94,8 +90,18 @@
       </tbody>
     </table>
     <div class="datanotfound">
-      <p id="notFound" class="hidden text-sm text-center m-5 text-slate-400">Maaf, data tidak ditemukan.</p>
+      <p id="notFound" class="hidden text-sm text-center m-5 text-slate-400">Maaf, data klub yang Anda cari tidak ditemukan.</p>
     </div>
+  </div>
+</div>
+<div class="fixed right-6 bottom-6 group flex md:hidden">
+  <a href="/klub/create" data-tooltip-target="btninfo" data-tooltip-placement="left" type="button" class="flex items-center justify-center text-white bg-blue-600 rounded-full w-12 h-12 hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
+    <svg aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+    <span class="sr-only">Open actions menu</span>
+  </a>
+  <div id="btninfo" role="tooltip" class="absolute z-10 invisible inline-block whitespace-nowrap px-3 py-2 text-xs font-medium transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip dark:border-none dark:text-slate-200 dark:bg-gray-700">
+    Tambah Klub Baru
+    <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
 </div>
 @endsection
